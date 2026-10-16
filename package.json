@@ -1,0 +1,65 @@
+{
+  "name": "@speechify/openclaw-speech",
+  "version": "0.1.0",
+  "description": "Speechify text-to-speech provider for OpenClaw: MP3 replies, Ogg Opus voice notes, PCM telephony, streamed synthesis.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Speechify-AI/openclaw-speechify"
+  },
+  "homepage": "https://github.com/Speechify-AI/openclaw-speechify#readme",
+  "type": "module",
+  "engines": {
+    "node": ">=24.16.0"
+  },
+  "files": [
+    "dist/**",
+    "openclaw.plugin.json",
+    "README.md",
+    "assets/icon.png",
+    "assets/activity.svg"
+  ],
+  "scripts": {
+    "build": "tsdown",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:live": "OPENCLAW_LIVE_TEST=1 vitest run test/speechify.live.test.ts",
+    "validate": "clawhub package validate .",
+    "publish:dry": "pnpm build && clawhub package publish . --family code-plugin --owner speechify --dry-run"
+  },
+  "openclaw": {
+    "extensions": [
+      "./index.ts"
+    ],
+    "runtimeExtensions": [
+      "./dist/index.js"
+    ],
+    "install": {
+      "clawhubSpec": "clawhub:@speechify/openclaw-speech",
+      "defaultChoice": "clawhub",
+      "minHostVersion": ">=2026.10.3"
+    },
+    "compat": {
+      "pluginApi": ">=2026.10.3"
+    },
+    "build": {
+      "openclawVersion": "2026.10.4",
+      "bundledDist": false
+    }
+  },
+  "peerDependencies": {
+    "openclaw": ">=2026.10.3"
+  },
+  "peerDependenciesMeta": {
+    "openclaw": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.5",
+    "openclaw": "2026.10.4",
+    "tsdown": "^0.23.1",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.5"
+  }
+}
