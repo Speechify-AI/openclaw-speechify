@@ -1,7 +1,9 @@
 {
   "id": "speechify",
-  "categories": ["voice"],
-  "capabilityCatalogEntry": "./capability-catalog.ts",
+  "categories": [
+    "voice"
+  ],
+  "capabilityCatalogEntry": "./dist/capability-catalog.js",
   "activation": {
     "onStartup": false
   },
@@ -11,12 +13,16 @@
     "providers": [
       {
         "id": "speechify",
-        "envVars": ["SPEECHIFY_API_KEY"]
+        "envVars": [
+          "SPEECHIFY_API_KEY"
+        ]
       }
     ]
   },
   "contracts": {
-    "speechProviders": ["speechify"]
+    "speechProviders": [
+      "speechify"
+    ]
   },
   "configSchema": {
     "type": "object",
