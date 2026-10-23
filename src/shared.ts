@@ -4,9 +4,14 @@ const DEFAULT_SPEECHIFY_BASE_URL = "https://api.speechify.ai";
 /** Hosts the API key may be sent to; the second is the legacy name of the same service. */
 export const SPEECHIFY_API_HOSTNAMES = ["api.speechify.ai", "api.sws.speechify.com"] as const;
 export const DEFAULT_SPEECHIFY_VOICE_ID = "geffen_32";
-export const DEFAULT_SPEECHIFY_MODEL = "simba-3.2";
-/** Known models for pickers. The API validates the model, so newer ids still pass through. */
+export const DEFAULT_SPEECHIFY_MODEL = "simba-3.5";
+/**
+ * Known models for pickers, recommended first. The API validates the model, so
+ * newer ids still pass through. The two legacy ids are retired for new
+ * workspaces and are served by simba-3.2 and simba-3.5 from 2026-11-21.
+ */
 export const SPEECHIFY_MODELS = [
+  "simba-3.5",
   "simba-3.2",
   "simba-3.0",
   "simba-english",

@@ -53,6 +53,12 @@ describe("speechify speech provider", () => {
     ).toBe(true);
   });
 
+  it("defaults to simba-3.5 and lists it first for pickers", () => {
+    expect(provider.defaultModel).toBe("simba-3.5");
+    expect(provider.models?.[0]).toBe("simba-3.5");
+    expect(provider.models).toContain("simba-3.2");
+  });
+
   it("synthesizes MP3 via the Speechify streaming endpoint with the defaults", async () => {
     const audioData = Buffer.from("mp3-audio-data");
     const fetchMock = vi.fn().mockResolvedValue(new Response(audioData, { status: 200 }));
@@ -73,7 +79,7 @@ describe("speechify speech provider", () => {
     expect(requestBody(init)).toEqual({
       input: "OpenClaw test",
       voice_id: "geffen_32",
-      model: "simba-3.2",
+      model: "simba-3.5",
     });
     expect(result).toMatchObject({
       outputFormat: "mp3",
@@ -184,7 +190,7 @@ describe("speechify speech provider", () => {
     expect(requestBody(init)).toEqual({
       input: "Telephony test",
       voice_id: "override-voice",
-      model: "simba-3.2",
+      model: "simba-3.5",
     });
     expect(result).toEqual({ audioBuffer: audioData, outputFormat: "pcm", sampleRate: 24_000 });
   });

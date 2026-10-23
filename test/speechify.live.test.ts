@@ -35,6 +35,17 @@ describe.skipIf(!LIVE || !SPEECHIFY_API_KEY)("speechify live", () => {
     // Ogg capture pattern.
     expect(voiceNote.audioBuffer.subarray(0, 4).toString("ascii")).toBe("OggS");
 
+    // simba-3.5 speaks every catalog voice in any of its 48 languages.
+    const portuguese = await provider.synthesize({
+      text: "Olá, este é um teste do Speechify em português.",
+      cfg,
+      providerConfig: { apiKey: SPEECHIFY_API_KEY, language: "pt-BR" },
+      target: "audio-file",
+      timeoutMs: 45_000,
+    });
+    expect(portuguese.outputFormat).toBe("mp3");
+    expect(portuguese.audioBuffer.byteLength).toBeGreaterThan(512);
+
     const outPath = join(tmpdir(), "speechify-live-test.mp3");
     writeFileSync(outPath, mp3.audioBuffer);
     console.log(`Audio written to ${outPath}`);

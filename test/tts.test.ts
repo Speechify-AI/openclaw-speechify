@@ -160,7 +160,7 @@ describe("speechify voices", () => {
           gender: "male",
           type: "shared",
           tags: ["narration"],
-          models: [{ name: "simba-3.2" }, { name: "simba-english" }],
+          models: [{ name: "simba-3.5" }, { name: "simba-3.2" }],
         },
         { display_name: "no id, dropped" },
       ]),
@@ -178,7 +178,7 @@ describe("speechify voices", () => {
       {
         id: "geffen_32",
         name: "Geffen",
-        description: "Models: simba-3.2, simba-english",
+        description: "Models: simba-3.5, simba-3.2",
         category: "shared",
         locale: "en-US",
         gender: "male",

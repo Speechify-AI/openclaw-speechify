@@ -1,5 +1,5 @@
 // The published `openclaw` package exports these plugin-sdk subpaths at runtime
-// but ships no declaration files for them (checked against openclaw@2026.10.4).
+// but ships no declaration files for them (checked against openclaw@2026.10.6).
 // The shapes below are copied from the OpenClaw repository:
 //   src/tts/provider-types.ts, src/plugins/capability-provider.types.ts,
 //   src/agents/provider-http-errors.ts, src/media/configured-max-bytes.ts.

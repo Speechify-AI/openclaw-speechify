@@ -39,7 +39,7 @@ export SPEECHIFY_API_KEY="sk_..."
       speechify: {
         apiKey: "${SPEECHIFY_API_KEY}",
         speakerVoiceId: "geffen_32",
-        model: "simba-3.2",
+        model: "simba-3.5",
       },
     },
   },
@@ -56,20 +56,21 @@ All keys live under `tts.providers.speechify`.
 | ---------------- | -------------------------- | --------------------------------------------------------------------------------------- |
 | `apiKey`         | `SPEECHIFY_API_KEY`        | Supports `${ENV}` and secret references.                                                |
 | `speakerVoiceId` | `geffen_32`                | Any voice id from the catalog. `voiceId` is accepted as an alias.                       |
-| `model`          | `simba-3.2`                | Passed through to the API, so new models work the day they ship. `modelId` is an alias. |
-| `language`       | unset                      | Optional locale hint such as `pt-BR`. The model detects the language when omitted.      |
+| `model`          | `simba-3.5`                | Passed through to the API, so new models work the day they ship. `modelId` is an alias. |
+| `language`       | unset                      | Optional locale such as `pt-BR`. On `simba-3.5` the voice's own locale applies when omitted. |
 | `baseUrl`        | `https://api.speechify.ai` | HTTPS on a Speechify API host only.                                                     |
 
 The same keys work under `talk.providers.speechify` for Talk mode.
 
 ### Models
 
-| Model                | Use                                                                                                                 |
-| -------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| `simba-3.2`          | Default. English only; pairs with the `_32` voices such as `geffen_32`. A non-English voice returns HTTP 400.       |
-| `simba-3.0`          | German, Spanish, French, Italian and Portuguese, plus English. Other locales route to Speechify's multilingual model. |
-| `simba-english`      | Previous-generation English model.                                                                                  |
-| `simba-multilingual` | Previous-generation multilingual model.                                                                             |
+| Model                | Use                                                                                                                                                                              |
+| -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `simba-3.5`          | Default, and the model Speechify recommends. 48 languages on one id; every catalog voice, cloned voices included, speaks all of them. Set `language` to choose; without it the voice's own locale decides. |
+| `simba-3.2`          | English only, with the lowest time to first byte. Pairs with the `_32` voices such as `geffen_32`. A non-English voice returns HTTP 400.                                        |
+| `simba-3.0`          | German, Spanish, French, Italian and Portuguese, plus English. The API's own default when `model` is omitted.                                                                   |
+| `simba-english`      | Legacy. New workspaces get HTTP 400 `model_retired`; from 2026-11-21 the id is served by `simba-3.2`.                                                                           |
+| `simba-multilingual` | Legacy. New workspaces get HTTP 400 `model_retired`; from 2026-11-21 the id is served by `simba-3.5`.                                                                           |
 
 ### Per-message overrides
 
@@ -77,7 +78,7 @@ When the speech policy allows it, switch voice, model or language inline:
 
 ```text
 /voice:harper_32
-/model:simba-3.0
+/model:simba-3.2
 /lang:pt-BR
 ```
 
