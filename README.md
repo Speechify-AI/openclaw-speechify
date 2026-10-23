@@ -67,7 +67,7 @@ The same keys work under `talk.providers.speechify` for Talk mode.
 | Model                | Use                                                                                                                                                                              |
 | -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `simba-3.5`          | Default, and the model Speechify recommends. 48 languages on one id; every catalog voice, cloned voices included, speaks all of them. Set `language` to choose; without it the voice's own locale decides. |
-| `simba-3.2`          | English only, with the lowest time to first byte. Pairs with the `_32` voices such as `geffen_32`. A non-English voice returns HTTP 400.                                        |
+| `simba-3.2`          | English only. Pairs with the `_32` voices such as `geffen_32`. A non-English voice returns HTTP 400.                                        |
 | `simba-3.0`          | German, Spanish, French, Italian and Portuguese, plus English. The API's own default when `model` is omitted.                                                                   |
 | `simba-english`      | Legacy. New workspaces get HTTP 400 `model_retired`; from 2026-11-21 the id is served by `simba-3.2`.                                                                           |
 | `simba-multilingual` | Legacy. New workspaces get HTTP 400 `model_retired`; from 2026-11-21 the id is served by `simba-3.5`.                                                                           |
